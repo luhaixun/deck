@@ -73,11 +73,14 @@ export class WebhookExecutionDetailsCtrl implements IController {
       return '<NO BODY RETURNED BY SERVER>';
     }
 
-    if (typeof body === 'object') {
-      return JSON.stringify(body, null, 2);
+    let maskingBody = body;
+    if (typeof maskingBody !== 'object') {
+      maskingBody = JSON.parse(maskingBody);
     }
-
-    return body;
+    if (maskingBody['token'] !== undefined) {
+      maskingBody['token'] = '**********';
+    }
+    return JSON.stringify(maskingBody, null, 2);
   }
 
   private initialize(): void {
