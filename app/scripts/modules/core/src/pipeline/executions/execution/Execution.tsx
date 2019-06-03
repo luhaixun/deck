@@ -246,10 +246,6 @@ export class Execution extends React.Component<IExecutionProps, IExecutionState>
     this.props.onRerun(execution, pipelineConfig);
   };
 
-  private handleSourceClick = (): void => {
-    ReactGA.event({ category: 'Pipeline', action: 'Execution source clicked' });
-  };
-
   private handlePermalinkClick = (): void => {
     ReactGA.event({ category: 'Pipeline', action: 'Permalink clicked' });
   };
@@ -414,10 +410,6 @@ export class Execution extends React.Component<IExecutionProps, IExecutionState>
             <StageExecutionDetails execution={execution} application={application} standalone={standalone} />
             <div className="permalinks">
               <div className="permalinks-content">
-                <a onClick={this.handleSourceClick} target="_blank" href={pipelinesUrl + execution.id}>
-                  Source
-                </a>
-                {' | '}
                 <a onClick={this.handlePermalinkClick} href={this.getUrl()}>
                   Permalink
                 </a>
