@@ -2,8 +2,10 @@ FROM node:10
 
 COPY . deck/
 
+# hadolint ignore=DL3000
 WORKDIR deck
 
+# hadolint ignore=DL3001,DL3003
 RUN free -h && \
   docker/setup-apache2.sh && \
   npm i -g yarn && \
@@ -17,5 +19,5 @@ RUN free -h && \
 COPY docker /opt/deck/docker
 
 WORKDIR /opt/deck
-
+# hadolint ignore=DL3025
 CMD /opt/deck/docker/run-apache2.sh
